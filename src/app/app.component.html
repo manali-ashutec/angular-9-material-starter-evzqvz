@@ -1,0 +1,48 @@
+<button mat-raised-button (click)="breakfast()" class="demo-button">
+  Breakfast
+</button>
+<button mat-raised-button (click)="lunch()" class="demo-button">Lunch</button>
+<button mat-raised-button (click)="eveningsnacks()" class="demo-button">
+  Evening Snacks
+</button>
+<button mat-raised-button (click)="dinner()" class="demo-button">Dinner</button>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>No.</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Price</th>
+    <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="available">
+    <th mat-header-cell *matHeaderCellDef>Available</th>
+    <td mat-cell *matCellDef="let element">{{ element.available }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="order">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button (click)="getOrder(element)" class="demo-button">
+        Add Order
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<app-order-table [orders]="orders"></app-order-table>
